@@ -67,6 +67,7 @@ public class AdminFacade extends ClientFacade {
 			compDB.deleteCompany(companyId);
 
 		}
+		throw new CompanyNotFoundException();
 
 	}
 
@@ -135,6 +136,7 @@ public class AdminFacade extends ClientFacade {
 
 	}
 
+	// add exception*!
 	public ArrayList<Customer> getAllCustomers() throws SQLException {
 		ArrayList<Customer> customers = custDB.getAllCustomers();
 		return customers;
@@ -149,7 +151,6 @@ public class AdminFacade extends ClientFacade {
 			return customer;
 
 		}
-
 		throw new CustomerNotFoundException();
 
 	}

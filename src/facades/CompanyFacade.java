@@ -40,24 +40,24 @@ public class CompanyFacade extends ClientFacade {
 	// this method checks if the coupon title doesnt match an existing coupon with
 	// the same title
 	public void addCoupon(Coupon coupon) throws SQLException, CouponAlreadyAdded, CompanyNotFoundException {
+		// this method already calls for all the coupons with the company id therefore
+		// no need to check for title of different company
 		ArrayList<Coupon> coupons = couponDB.getAllCouponsByCompID(CompanyID);
-		Company comp = compDB.getOneCompany(CompanyID);
 
 		boolean exist = false;
 		for (Coupon coup : coupons) {
-			if (coup.getCompanyID() == comp.getCompanyID()) {
-				if (coup.getTitle().equalsIgnoreCase(coupon.getTitle())) {
-					exist = true;
-					throw new CouponAlreadyAdded();
 
-				}
+			if (coup.getTitle().equalsIgnoreCase(coupon.getTitle())) {
+				exist = true;
+				throw new CouponAlreadyAdded();
 
 			}
-			if (!exist) {
 
-				couponDB.addCouponToCompany(coupon, CompanyID);
-				break;
-			}
+		}
+		if (!exist) {
+
+			couponDB.addCouponToCompany(coupon, CompanyID);
+
 		}
 
 	}
@@ -66,12 +66,15 @@ public class CompanyFacade extends ClientFacade {
 	// **************************************************************************
 	// need to add categories update to the couponDBDAO updatecoupon***
 	public void updateCoupon(Coupon coupon) throws SQLException, CouponNotFoundException {
+		// this method already pulls all the coupons by company id therefore wont be
+		// able to update a coupon with a different company id
 		ArrayList<Coupon> coupons = couponDB.getAllCouponsByCompID(CompanyID);
 		boolean exist = false;
 		if (!coupons.isEmpty()) {
 			for (Coupon coupon2 : coupons) {
 				if (coupon2.getCouponID() == coupon.getCouponID()) {
 					couponDB.updateCoupon(coupon);
+					System.out.println("Coupon updated successfully");
 					exist = true;
 					break;
 

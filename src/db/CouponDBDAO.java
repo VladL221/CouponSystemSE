@@ -69,16 +69,16 @@ public class CouponDBDAO implements CouponDAO {
 
 		try {
 			PreparedStatement ps = con.prepareStatement(
-					"update coupons set title =?, description =?, start_date=?,end_date=?,amount=?,price=?,image=? where coupon_id=?");
-
-			ps.setString(1, coupon.getTitle());
-			ps.setString(2, coupon.getDescription());
-			ps.setDate(3, coupon.getStartDate());
-			ps.setDate(4, coupon.getEndDate());
-			ps.setInt(5, coupon.getAmount());
-			ps.setDouble(6, coupon.getPrice());
-			ps.setString(7, coupon.getImage());
-			ps.setInt(8, coupon.getCouponID());
+					"update coupons set category_id=?, title =?, description =?, start_date=?,end_date=?,amount=?,price=?,image=? where coupon_id=?");
+			ps.setInt(1, coupon.getCategory().ordinal() + 1);
+			ps.setString(2, coupon.getTitle());
+			ps.setString(3, coupon.getDescription());
+			ps.setDate(4, coupon.getStartDate());
+			ps.setDate(5, coupon.getEndDate());
+			ps.setInt(6, coupon.getAmount());
+			ps.setDouble(7, coupon.getPrice());
+			ps.setString(8, coupon.getImage());
+			ps.setInt(9, coupon.getCouponID());
 			ps.execute();
 
 		} finally {

@@ -14,6 +14,7 @@ public class Coupon {
 	private String image;
 	private Category category;
 
+	//for the couponDBDAO select methods
 	public Coupon(int couponID, int companyID, String title, String description, Date startDate, Date endDate,
 			int amount, double price, String image, Category category) {
 		super();
@@ -28,7 +29,7 @@ public class Coupon {
 		this.image = image;
 		this.category = category;
 	}
-
+	// for the company add method methods
 	public Coupon(Category category, String title, String description, Date startDate, Date endDate, int amount,
 			double price, String image) {
 		super();
@@ -41,7 +42,7 @@ public class Coupon {
 		this.image = image;
 		this.category = category;
 	}
-
+	//for the company update method
 	public Coupon(int couponID, String title, String description, Date startDate, Date endDate, int amount,
 			double price, String image, Category category) {
 		super();
