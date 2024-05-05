@@ -10,6 +10,7 @@ import facades.ClientFacade;
 import facades.CompanyFacade;
 import facades.CustomerFacade;
 
+
 public class LoginManager {
 
 	private static final LoginManager instance = new LoginManager();
